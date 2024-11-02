@@ -1,12 +1,37 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import AmazonCart from "./components/AmazonCart";
 import WishList from "./components/WishList";
 function LandingPage() {
-  return <>Landing</>;
+  const navigate = useNavigate();
+  return (
+    <div
+      className="landing-page"
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
+      {" "}
+      <p>Welcome to Amazon Cart</p>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <button
+          onClick={() => {
+            navigate("/cart");
+          }}
+        >
+          Go to Cart
+        </button>
+        <button
+          onClick={() => {
+            navigate("/wishlist");
+          }}
+        >
+          Go to Wishlist
+        </button>
+      </div>
+    </div>
+  );
 }
 function NotFound() {
-  return <div className="notfound">Error 404.Page not found</div>;
+  return <div className="not-found">Error 404.Page not found</div>;
 }
 function App() {
   return (
