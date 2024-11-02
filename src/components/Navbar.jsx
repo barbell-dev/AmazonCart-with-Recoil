@@ -1,3 +1,4 @@
+import { FaShoppingCart } from "react-icons/fa";
 export default function Navbar() {
   return (
     <div
@@ -14,7 +15,9 @@ export default function Navbar() {
       <p style={{}}>amazon.in</p>
       <div style={{ display: "flex" }}>
         <p>Hello,user</p>
-        <button style={{ borderRadius: "2px" }}>CartIcon</button>
+        <button style={{ borderRadius: "2px" }}>
+          <FaShoppingCart />
+        </button>
       </div>
     </div>
   );
