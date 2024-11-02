@@ -1,4 +1,4 @@
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import Navbar from "./Navbar";
 import { cartItemsState } from "../store/cartItemsState";
 function ShoppingCart() {
@@ -9,7 +9,7 @@ function ShoppingCart() {
       <h3>Shopping Cart</h3>
       <div className="shopping-cart-elements">
         {cartItems.map((element, index) => {
-          return <Element element={element} key={index} />;
+          <Element element={element} key={index} />;
         })}
       </div>
     </div>
@@ -18,19 +18,25 @@ function ShoppingCart() {
 function Element({ props }) {
   return (
     <div className="shopping-cart-element">
-      <p>{props.name}</p>
+      <p>{props ? props.name : ""}</p>
       <img src={props.image} width={"100px"} />
-      <p>{props.price}</p>
+      <p>{props ? props.price : ""}</p>
       <button id="increment-button">+</button>
-      {props.quantity}
+      {props ? props.quantity : 0}
       <button id="decrement-button">-</button>
     </div>
   );
 }
 function OrderSummary() {
+  const cartItems = useRecoilValue(cartItemsState);
+  console.log(cartItems);
   return (
-    <div>
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <h3>Order Summary</h3>
+      <p>
+        Items &nbsp; ({cartItems.length > 0 ? cartItems.length : 0}): &#8377;
+        {cartItems.length}
+      </p>
     </div>
   );
 }
