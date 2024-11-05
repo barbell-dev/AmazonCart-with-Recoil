@@ -23,8 +23,9 @@ export default function WishList() {
               />
               <button
                 onClick={() => {
-                  setCartItems([...cartItems, element]);
-                  console.log(cartItems);
+                  let temp = { ...element, quantity: 1 };
+                  setCartItems([...cartItems, temp]);
+                  // console.log(cartItems);
                 }}
               >
                 Add to cart
