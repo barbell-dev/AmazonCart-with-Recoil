@@ -10,8 +10,7 @@ export const wishItemsState = atom({
     },
     {
       name: "coffee-cup",
-      "image-url":
-        "https://images.meesho.com/images/products/407761667/z7qsi_1200.jpg",
+      "image-url": "",
       price: "$100",
       quantity: 0,
     },
