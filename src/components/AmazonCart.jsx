@@ -18,6 +18,7 @@ function ShoppingCart() {
   );
 }
 function Element({ element }) {
+  const [cartItems, setCartItemsState] = useRecoilState(cartItemsState);
   // console.log(element.test);
   // console.log(element);
   return (
@@ -32,7 +33,24 @@ function Element({ element }) {
         width={"100px"}
       />
       <p>{element ? element.price : ""}</p>
-      <button id="increment-button">+</button>
+      <button
+        id="increment-button"
+        onClick={() => {
+          console.log(element.quantity);
+          // element.quantity++;
+          // setCartItemsState()
+          for (let i = 0; i < cartItems.length; i++) {
+            if (cartItems[i].name == element.name) {
+              setCartItemsState(cartItems[i].quantity++);
+              break;
+            } else {
+              continue;
+            }
+          }
+        }}
+      >
+        +
+      </button>
       {element ? element.quantity : 0}
       <button id="decrement-button">-</button>
     </div>
