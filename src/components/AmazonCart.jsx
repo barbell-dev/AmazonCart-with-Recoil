@@ -67,11 +67,20 @@ function Element({ element }) {
 
               temp.find((a) => a.name == element.name).quantity -= 1;
               if (e.quantity == 0) {
-                temp.filter((a) => a.name != element.name);
-
-                setVisible((val) => false);
+                // temp.filter((a) => a.name != element.name);
+                // console.log(temp);
+                for (let i = 0; i < temp.length; i++) {
+                  if (temp[i].name == e.name) {
+                    temp.splice(i, 1);
+                    setCartItemsState((val) => temp);
+                    setVisible((val) => false);
+                    break;
+                  }
+                }
+                // setCartItemsState((val) => {});
+              } else {
+                setCartItemsState(temp);
               }
-              setCartItemsState(temp);
               // temp.find((a) => a.name == element.name).quantity > 0
               //   ? (temp.find((a) => a.name == element.name).quantity -= 1)
               //   : temp.filter((a) => a.name != element.name);
