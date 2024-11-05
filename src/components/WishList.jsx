@@ -14,11 +14,17 @@ export default function WishList() {
             <div
               className="card"
               style={{ display: "flex", flexDirection: "column" }}
+              key={index}
             >
-              <p>{element}</p>
+              <p>{element["name"]}</p>
+              <img
+                src={element["image-url"]}
+                alt={element["name"] + "-image"}
+              />
               <button
                 onClick={() => {
                   setCartItems([...cartItems, element]);
+                  console.log(cartItems);
                 }}
               >
                 Add to cart
