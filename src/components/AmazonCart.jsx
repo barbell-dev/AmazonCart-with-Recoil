@@ -1,7 +1,7 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import Navbar from "./Navbar";
 import { cartItemsState } from "../store/cartItemsState";
-import { useState } from "react";
+import { useRef, useState } from "react";
 function ShoppingCart() {
   const [cartItems, setCartItemsState] = useRecoilState(cartItemsState);
 
@@ -25,6 +25,7 @@ function Element({ element }) {
   // console.log(element);
   console.log(cartItems);
   const [visible, setVisible] = useState(true);
+  const inputRef = useRef();
   return (
     <>
       {" "}
@@ -48,14 +49,30 @@ function Element({ element }) {
                 return { ...a };
               });
               temp.find((a) => a.name == element.name).quantity += 1;
+              let val = parseInt(inputRef.current.value);
+              val += 1;
+              inputRef.current.value = val;
               setCartItemsState(temp);
             }}
           >
             +
           </button>
 
-          {element.quantity ? element.quantity : 0}
-
+          <input
+            type="number"
+            defaultValue={element.quantity ? element.quantity : 0}
+            ref={inputRef}
+            onChange={() => {
+              let temp = cartItems.map((a) => {
+                return { ...a };
+              });
+              temp.find((a) => a.name == element.name).quantity = parseInt(
+                inputRef.current.value
+              );
+              console.log(temp);
+              setCartItemsState(temp);
+            }}
+          />
           <button
             id="decrement-button"
             onClick={() => {
@@ -79,6 +96,9 @@ function Element({ element }) {
                 }
                 // setCartItemsState((val) => {});
               } else {
+                let val = parseInt(inputRef.current.value);
+                val -= 1;
+                inputRef.current.value = val;
                 setCartItemsState(temp);
               }
               // temp.find((a) => a.name == element.name).quantity > 0
