@@ -11,9 +11,7 @@ import {
 } from "recoil";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <RecoilRoot>
-      <App />
-    </RecoilRoot>
-  </StrictMode>
+  <RecoilRoot>
+    <App />
+  </RecoilRoot>
 );
